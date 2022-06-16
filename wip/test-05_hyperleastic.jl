@@ -1,4 +1,6 @@
 # Initialize particles from a nifti file
+# Reference: https://nialltl.neocities.org/articles/mpm_guide.html
+
 
 include("/home/faruk/Git/thingsonthings/code/post016-julia_brainsplode/core.jl")
 
@@ -10,7 +12,7 @@ OUTDIR = "/home/faruk/Documents/test_julia/test-05"
 INPUT = "/home/faruk/Documents/test_julia/T1w_brain.nii.gz"
 
 TARGET_FRAMERATE = 60  # FPS
-DURATION = 6  # seconds
+DURATION = 3  # seconds
 NR_ITERATIONS = TARGET_FRAMERATE * DURATION
 TIME_STEP = 0.1
 
