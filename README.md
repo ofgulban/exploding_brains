@@ -4,6 +4,8 @@ Particle simulations for exploding brains **in Julia**. This is the successor to
 1. [2020 OpenMR Benelux](https://github.com/ohbm/hackathon2020/issues/124)
 2. [2020 OHBM Brainhack](https://github.com/OpenMRBenelux/openmrb2020-hackathon/issues/7)
 
+For further details on the particle simulations read this excellent blog post: https://nialltl.neocities.org/articles/mpm_guide.html
+
 <!--(https://github.com/ofgulban/exploding_brains/blob/main/visuals/example-17.gif)-->
 <img src="/visuals/example-17.gif" width=256 align="center" />
 
