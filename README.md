@@ -10,7 +10,9 @@ For further details on the particle simulations read this excellent blog post: h
 <img src="/visuals/example-17.gif" width=256 align="center" />
 
 ## Dependencies
-TODO
+| Package | Tested Version |
+|---------|----------------|
+|   NIfTI |           0.5.6|
 
 ## Installation
 TODO
