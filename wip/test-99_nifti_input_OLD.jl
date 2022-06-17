@@ -1,6 +1,6 @@
 # Try Julia for generating brain explosions
 
-include("/home/faruk/Git/thingsonthings/code/post016-julia_brainsplode/core.jl")
+include("/home/faruk/Git/exploding_brains/wip/core.jl")
 
 INPUT = "/home/faruk/Documents/test_julia/T1w_brain.nii.gz"
 OUTDIR = "/home/faruk/Documents/test_julia/test-02"

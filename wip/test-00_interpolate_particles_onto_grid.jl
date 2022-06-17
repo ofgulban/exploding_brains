@@ -1,6 +1,6 @@
 # Map random points on a grid using 2D quadratic interpolation
 
-include("/home/faruk/Git/thingsonthings/code/post016-julia_brainsplode/core.jl")
+include("/home/faruk/Git/exploding_brains/wip/core.jl")
 
 import Distributions
 

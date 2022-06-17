@@ -1,8 +1,7 @@
 # Initialize particles from a nifti file
 # Reference: https://nialltl.neocities.org/articles/mpm_guide.html
 
-
-include("/home/faruk/Git/thingsonthings/code/post016-julia_brainsplode/core.jl")
+include("/home/faruk/Git/exploding_brains/wip/core.jl")
 
 import Distributions
 import ImageFiltering
@@ -53,6 +52,7 @@ NR_PARTICLES = size(p_pos)[1]
 println("Number of particles: ", NR_PARTICLES)
 println("Grid size          : ", GRID_SIZE)
 println("Number of frames   : ", NR_ITERATIONS)
+println("HERE")
 
 # Record voxel intensity values into particles
 p_val = data[p_idx]
@@ -65,6 +65,9 @@ p_Fs = zeros((NR_PARTICLES, 2, 2))
 p_Fs[:, 1, 1] .= 1
 p_Fs[:, 2, 2] .= 1
 
+println("HERE")
+
+
 # Initialize velocities
 p_vel = zeros((NR_PARTICLES, 2))
 p_vel[:, 1] = rand(Distributions.Uniform(-1, 1), NR_PARTICLES)
@@ -73,6 +76,7 @@ p_vel[:, 2] = rand(Distributions.Uniform(-1, 1), NR_PARTICLES)
 p_vel .*= 10
 
 # =============================================================================
+println("Generating vector fields...")
 g_vel_x = zeros(GRID_SIZE)
 g_vel_x = particle_to_grid_interpolate_quadratic(p_pos, g_vel_x, p_vel[:, 1])
 
@@ -95,6 +99,7 @@ for i = 1:NR_PARTICLES
 end
 
 # =============================================================================
+println("Start moving particles...")
 
 # Move particles using their velocities
 @time for i = 1:NR_ITERATIONS
