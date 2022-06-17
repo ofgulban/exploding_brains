@@ -7,7 +7,7 @@ import ImageFiltering
 import Images
 
 OUTDIR = "/home/faruk/Documents/test_julia/test-03"
-INPUT = "/home/faruk/Documents/test_julia/T1w_brain.nii.gz"
+INPUT = "/home/faruk/Git/exploding_brains/test_data/T1w_brain.nii.gz"
 
 TARGET_FRAMERATE = 60  # FPS
 DURATION = 12  # seconds

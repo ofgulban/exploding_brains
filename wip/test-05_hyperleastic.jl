@@ -8,12 +8,12 @@ import ImageFiltering
 import Images
 
 OUTDIR = "/home/faruk/Documents/test_julia/test-05"
-INPUT = "/home/faruk/Documents/test_julia/T1w_brain.nii.gz"
+INPUT = "/home/faruk/Git/exploding_brains/test_data/T1w_brain.nii.gz"
 
 TARGET_FRAMERATE = 60  # FPS
 DURATION = 3  # seconds
 NR_ITERATIONS = TARGET_FRAMERATE * DURATION
-TIME_STEP = 0.1
+TIME_STEP = 0.5
 
 SMOOTH_FACTOR = 10
 GRAVITY = -0.3
@@ -52,7 +52,6 @@ NR_PARTICLES = size(p_pos)[1]
 println("Number of particles: ", NR_PARTICLES)
 println("Grid size          : ", GRID_SIZE)
 println("Number of frames   : ", NR_ITERATIONS)
-println("HERE")
 
 # Record voxel intensity values into particles
 p_val = data[p_idx]
@@ -64,9 +63,6 @@ p_C = zeros((NR_PARTICLES, 2, 2))
 p_Fs = zeros((NR_PARTICLES, 2, 2))
 p_Fs[:, 1, 1] .= 1
 p_Fs[:, 2, 2] .= 1
-
-println("HERE")
-
 
 # Initialize velocities
 p_vel = zeros((NR_PARTICLES, 2))
@@ -116,9 +112,11 @@ println("Start moving particles...")
     grid = particle_to_grid_interpolate_quadratic(p_pos, grid, p_val)
     save_png(grid, joinpath(OUTDIR, string("frame-", lpad(i, 4, "0"), ".png")),
     false)
+    println(string("  Frame: ", i, "/", NR_ITERATIONS))
 
     # Compute velocity grid
-    local g_vel = particle_to_grid_velocity(p_pos, grid, p_vel, p_mass, p_C, p_Fs, p_vol)
+    local g_vel = particle_to_grid_velocity(p_pos, grid, p_vel, p_mass, p_C,
+                                            p_Fs, p_vol)
 
     # Grid to particle mapping
     Threads.@threads for i = 1:NR_PARTICLES
@@ -180,9 +178,11 @@ println("Start moving particles...")
         cell_dist_y_k = p_y - (cell_center_y + 1)
 
         # Constructing affine per-particle momentum matrix from APIC / MLS-MPM.
-        # See APIC paper (https://web.archive.org/web/20190427165435/https://www.math.ucla.edu/~jteran/papers/JSSTS15.pdf), page 6
-        # elow equation 11 for clarification. this is calculating C = B * (D^-1) for APIC equation 8,
-        # where B is calculated in the inner loop at (D^-1) = 4 is a constant when using quadratic interpolation functions
+        # See APIC paper (https://web.archive.org/web/20190427165435/https://www.math.ucla.edu/~jteran/papers/JSSTS15.pdf),
+        # page 6 below equation 11 for clarification. this is calculating
+        # C = B * (D^-1) for APIC equation 8, where B is calculated in the
+        # inner loop at (D^-1) = 4 is a constant when using quadratic
+        # interpolation functions
         B = zeros((2, 2))
         B[1, 1] += wx_i * wy_i * g_vel[g_x-1, g_y-1, 1] * cell_dist_x_i
         B[1, 2] += wx_i * wy_i * g_vel[g_x-1, g_y-1, 2] * cell_dist_x_i

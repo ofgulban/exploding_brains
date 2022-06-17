@@ -2,7 +2,7 @@
 
 include("/home/faruk/Git/exploding_brains/wip/core.jl")
 
-INPUT = "/home/faruk/Documents/test_julia/T1w_brain.nii.gz"
+INPUT = "/home/faruk/Git/exploding_brains/test_data/T1w_brain.nii.gz"
 OUTDIR = "/home/faruk/Documents/test_julia/frames"
 
 NR_ITER = 10
